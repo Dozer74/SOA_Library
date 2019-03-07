@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from modernrpc.views import RPCEntryPoint
 
 from Library.models import Author, Book
 
@@ -23,4 +24,5 @@ admin.site.register(Book)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path(r'rpc/', RPCEntryPoint.as_view()),
 ]
