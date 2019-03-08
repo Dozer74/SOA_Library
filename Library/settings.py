@@ -37,9 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'modernrpc',
     'Library',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -52,7 +54,7 @@ MIDDLEWARE = [
 ]
 
 MODERNRPC_METHODS_MODULES = [
-    'Library.rpc_methods'
+    'Library.views.rpc.rpc_methods'
 ]
 
 ROOT_URLCONF = 'Library.urls'

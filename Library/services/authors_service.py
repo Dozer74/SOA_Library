@@ -1,11 +1,9 @@
-from typing import List, Optional
-
+from typing import List
 from django.db.models import Count, Value
 from django.db.models.functions import Concat
 from django.forms.models import model_to_dict
-from django.db.models import Q
 
-from Library.models import Author, Book
+from Library.models import Author
 
 
 class AuthorsService:
@@ -21,7 +19,11 @@ class AuthorsService:
         return list(query)
 
     @staticmethod
-    def get_author_by_id(id: int) -> Optional[dict]:
+    def get_author_by_id(id: int) -> dict:
+        """
+        Queries author's full info with brief info about his books
+        :param id: Author's id
+        """
         author = Author.objects \
             .prefetch_related('books') \
             .get(pk=id)

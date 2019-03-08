@@ -1,23 +1,15 @@
-"""Library URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/2.1/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 from modernrpc.views import RPCEntryPoint
 
-from Library.models import Author, Book
+
+from Library.models.author import Author
+from Library.models.book import Book
+from Library.views.rest.author import AuthorList, AuthorDetail
+from Library.views.rest.book import BookList, BookDetail
+from Library.views.rest.genre import GenreList
 
 admin.site.register(Author)
 admin.site.register(Book)
@@ -25,4 +17,12 @@ admin.site.register(Book)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path(r'rpc/', RPCEntryPoint.as_view()),
+
+    path('authors/', AuthorList.as_view()),
+    path('authors/<int:pk>/', AuthorDetail.as_view()),
+
+    path('books/', BookList.as_view()),
+    path('books/<int:pk>/', BookDetail.as_view()),
+
+    path('genres/', GenreList.as_view())
 ]

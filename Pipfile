@@ -9,6 +9,8 @@ verify_ssl = true
 django = "*"
 pillow = "*"
 django-modern-rpc = "*"
+djangorestframework = "*"
+django-extra-fields = "*"
 
 [requires]
 python_version = "3.7"
